@@ -7,3 +7,8 @@ Implementação dos seguintes algoritmos de busca no jogo do PAC-MAN:
  - Busca de Custo Uniforme
 
 Criação de novos labirintos para teste(pequenos, médios e grandes)
+
+Entrada: Estado inicial e estado meta;
+Deve retornar:
+a) o número de estados (movimentos) testados
+b) o caminho e número de estados para a solução;

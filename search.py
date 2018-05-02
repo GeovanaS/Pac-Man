@@ -20,100 +20,152 @@ Pacman agents (in searchAgents.py).
 import util
 
 class SearchProblem:
-    """
-    This class outlines the structure of a search problem, but doesn't implement
-    any of the methods (in object-oriented terminology: an abstract class).
+	"""
+	This class outlines the structure of a search problem, but doesn't implement
+	any of the methods (in object-oriented terminology: an abstract class).
 
-    You do not need to change anything in this class, ever.
-    """
+	You do not need to change anything in this class, ever.
+	"""
 
-    def getStartState(self):
-        """
-        Returns the start state for the search problem.
-        """
-        util.raiseNotDefined()
+	def getStartState(self):
+		"""
+		Returns the start state for the search problem.
+		"""
+		util.raiseNotDefined()
 
-    def isGoalState(self, state):
-        """
-          state: Search state
+	def isGoalState(self, state):
+		"""
+		  state: Search state
 
-        Returns True if and only if the state is a valid goal state.
-        """
-        util.raiseNotDefined()
+		Returns True if and only if the state is a valid goal state.
+		"""
+		util.raiseNotDefined()
 
-    def getSuccessors(self, state):
-        """
-          state: Search state
+	def getSuccessors(self, state):
+		"""
+		  state: Search state
 
-        For a given state, this should return a list of triples, (successor,
-        action, stepCost), where 'successor' is a successor to the current
-        state, 'action' is the action required to get there, and 'stepCost' is
-        the incremental cost of expanding to that successor.
-        """
-        util.raiseNotDefined()
+		For a given state, this should return a list of triples, (successor,
+		action, stepCost), where 'successor' is a successor to the current
+		state, 'action' is the action required to get there, and 'stepCost' is
+		the incremental cost of expanding to that successor.
+		"""
+		util.raiseNotDefined()
 
-    def getCostOfActions(self, actions):
-        """
-         actions: A list of actions to take
+	def getCostOfActions(self, actions):
+		"""
+		 actions: A list of actions to take
 
-        This method returns the total cost of a particular sequence of actions.
-        The sequence must be composed of legal moves.
-        """
-        util.raiseNotDefined()
+		This method returns the total cost of a particular sequence of actions.
+		The sequence must be composed of legal moves.
+		"""
+		util.raiseNotDefined()
 
 
 def tinyMazeSearch(problem):
-    """
-    Returns a sequence of moves that solves tinyMaze.  For any other maze, the
-    sequence of moves will be incorrect, so only use this for tinyMaze.
-    """
-    from game import Directions
-    s = Directions.SOUTH
-    w = Directions.WEST
-    return  [s, s, w, s, w, w, s, w]
+	"""
+	Returns a sequence of moves that solves tinyMaze.  For any other maze, the
+	sequence of moves will be incorrect, so only use this for tinyMaze.
+	"""
+	from game import Directions
+	s = Directions.SOUTH
+	w = Directions.WEST
+	return  [s, s, w, s, w, w, s, w]
 
 def depthFirstSearch(problem):
-    """
-    Search the deepest nodes in the search tree first.
+	"""
+	Search the deepest nodes in the search tree first.
 
-    Your search algorithm needs to return a list of actions that reaches the
-    goal. Make sure to implement a graph search algorithm.
+	Your search algorithm needs to return a list of actions that reaches the
+	goal. Make sure to implement a graph search algorithm.
 
-    To get started, you might want to try some of these simple commands to
-    understand the search problem that is being passed in:
+	To get started, you might want to try some of these simple commands to
+	understand the search problem that is being passed in:
 
-    print "Start:", problem.getStartState()
-    print "Is the start a goal?", problem.isGoalState(problem.getStartState())
-    print "Start's successors:", problem.getSuccessors(problem.getStartState())
-    """
-    "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+	print "Start:", problem.getStartState()
+	print "Is the start a goal?", problem.isGoalState(problem.getStartState())
+	print "Start's successors:", problem.getSuccessors(problem.getStartState())
+	"""
+	"*** YOUR CODE HERE ***"
+	util.raiseNotDefined()
 
 def breadthFirstSearch(problem):
-    """Search the shallowest nodes in the search tree first."""
-    "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
-
-def uniformCostSearch(problem):
-    """Search the node of least total cost first."""
-    "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+	"""Search the shallowest nodes in the search tree first."""
+	"*** YOUR CODE HERE ***"
+	util.raiseNotDefined()
 
 def nullHeuristic(state, problem=None):
-    """
-    A heuristic function estimates the cost from the current state to the nearest
-    goal in the provided SearchProblem.  This heuristic is trivial.
-    """
-    return 0
+	"""
+	A heuristic function estimates the cost from the current state to the nearest
+	goal in the provided SearchProblem.  This heuristic is trivial.
+	"""
+	return 0
+
+########################################################################################
+""" Busca de Custo Uniforme """
+
+def uniformCostSearch(problem):
+	"""Search the node of least total cost first."""
+	util.raiseNotDefined()
+	
+##############################################################################################
+""" Busca A* """
 
 def aStarSearch(problem, heuristic=nullHeuristic):
-    """Search the node that has the lowest combined cost and heuristic first."""
-    "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+	"""Search the node that has the lowest combined cost and heuristic first."""     
 
+	nodosExplorados = []
+	custoMeta = []
+	custoNo = []
+
+	""" Utiliza uma fila de prioridade para cada iteracao seleciona o nodo de menor custo para realizar a expansao a partir do estado inicial. """ 
+	fila = util.PriorityQueue()
+	estadoInicial =  problem.getStartState()
+	"""Insere na fila o estado inicial da busca."""
+	fila.push((estadoInicial,[],0),heuristic(estadoInicial,problem))  
+	
+	""" Enquanto a fila nao estiver vazia remove os nodos da fila e verifica se estar no estado meta, se estiver retorna o caminho percorrido. """
+	while not fila.isEmpty(): 
+		 nodoAtual,caminho,custoMeta = fila.pop();
+		 if problem.isGoalState(nodoAtual): 
+		 	#print "Caminho percorrido:\n", caminho
+			#print "Numero de estados:\n", len(caminho)
+			return caminho
+         
+		 if nodoAtual not in nodosExplorados:
+			nodosExplorados.append(nodoAtual)
+			#print "Nodos Explorados:\n",nodosExplorados
+			""" Encontra os sucessores do estado atual que nao foram visitados ainda e cria as extensoes de caminho para cada sucessor """ 
+			for sucessor, acao, custoNo in problem.getSuccessors(nodoAtual):
+			    if sucessor not in nodosExplorados:
+			      estimativa =  heuristic(sucessor,problem) 
+			      fila.push((sucessor,caminho+[acao],custoMeta+custoNo),custoMeta+custoNo+estimativa)
+		 print "Caminho percorrido:\n", caminho
+		 print "Numero de estados:\n", len(caminho)
+	return caminho
+
+#########################################################################################
+""" Busca Tempera Simulada """
+def simulatedAnnealingSearch():
+
+
+
+	util.raiseNotDefined()
+
+#########################################################################################	
+""" Busca Subida de Encosta """
+def hillClimbingSearch():
+	
+
+
+	util.raiseNotDefined()
+
+#########################################################################################	
 
 # Abbreviations
 bfs = breadthFirstSearch
 dfs = depthFirstSearch
 astar = aStarSearch
 ucs = uniformCostSearch
+sa = simulatedAnnealingSearch
+hc = hillClimbingSearch

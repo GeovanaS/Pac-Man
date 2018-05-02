@@ -11,6 +11,8 @@
 # Student side autograding was added by Brad Miller, Nick Hay, and
 # Pieter Abbeel (pabbeel@cs.berkeley.edu).
 
+# Trabalho FIA 
+# Grupo: Gabriella Selbach, Geovana Silveira e Luiza Cruz
 
 """
 In search.py, you will implement generic search algorithms which are called by
@@ -114,36 +116,7 @@ def uniformCostSearch(problem):
 
 def aStarSearch(problem, heuristic=nullHeuristic):
 	"""Search the node that has the lowest combined cost and heuristic first."""     
-
-	nodosExplorados = []
-	custoMeta = []
-	custoNo = []
-
-	""" Utiliza uma fila de prioridade para cada iteracao seleciona o nodo de menor custo para realizar a expansao a partir do estado inicial. """ 
-	fila = util.PriorityQueue()
-	estadoInicial =  problem.getStartState()
-	"""Insere na fila o estado inicial da busca."""
-	fila.push((estadoInicial,[],0),heuristic(estadoInicial,problem))  
-	
-	""" Enquanto a fila nao estiver vazia remove os nodos da fila e verifica se estar no estado meta, se estiver retorna o caminho percorrido. """
-	while not fila.isEmpty(): 
-		 nodoAtual,caminho,custoMeta = fila.pop();
-		 if problem.isGoalState(nodoAtual): 
-		 	#print "Caminho percorrido:\n", caminho
-			#print "Numero de estados:\n", len(caminho)
-			return caminho
-         
-		 if nodoAtual not in nodosExplorados:
-			nodosExplorados.append(nodoAtual)
-			#print "Nodos Explorados:\n",nodosExplorados
-			""" Encontra os sucessores do estado atual que nao foram visitados ainda e cria as extensoes de caminho para cada sucessor """ 
-			for sucessor, acao, custoNo in problem.getSuccessors(nodoAtual):
-			    if sucessor not in nodosExplorados:
-			      estimativa =  heuristic(sucessor,problem) 
-			      fila.push((sucessor,caminho+[acao],custoMeta+custoNo),custoMeta+custoNo+estimativa)
-		 print "Caminho percorrido:\n", caminho
-		 print "Numero de estados:\n", len(caminho)
-	return caminho
+	util.raiseNotDefined()
 
 #########################################################################################
 """ Busca Tempera Simulada """

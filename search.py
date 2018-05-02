@@ -106,6 +106,7 @@ def nullHeuristic(state, problem=None):
 
 def uniformCostSearch(problem):
 	"""Search the node of least total cost first."""
+
 	util.raiseNotDefined()
 	
 ##############################################################################################
@@ -148,15 +149,11 @@ def aStarSearch(problem, heuristic=nullHeuristic):
 """ Busca Tempera Simulada """
 def simulatedAnnealingSearch():
 
-
-
 	util.raiseNotDefined()
 
 #########################################################################################	
 """ Busca Subida de Encosta """
 def hillClimbingSearch():
-	
-
 
 	util.raiseNotDefined()
 

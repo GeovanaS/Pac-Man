@@ -150,8 +150,14 @@ def simulatedAnnealingSearch(problem, heuristic=nullHeuristic):
 #########################################################################################	
 """ Busca Subida de Encosta """
 def hillClimbingSearch(problem):
+<<<<<<< HEAD
 
 
+=======
+	
+	current_node = problem.getStartState()
+		
+>>>>>>> a1535a22e8bae30a8591b6af724cef6e99616934
 	util.raiseNotDefined()
 
 #########################################################################################	

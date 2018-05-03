@@ -18,3 +18,12 @@ a) o número de estados (movimentos) testados
 
 b) o caminho e número de estados para a solução;
 
+
+Compilação da Busca de Custo Uniforme: 
+
+Labirinto Pequeno: python pacman.py -l tinyMaze -p SearchAgent -a fn=ucs
+
+Labirinto Médio: python pacman.py -l mediumMaze -p SearchAgent -a fn=ucs
+
+Labirinto Grande: python pacman.py -l bigMaze -z .5 -p SearchAgent -a fn=ucs
+

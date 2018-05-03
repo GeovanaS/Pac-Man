@@ -113,13 +113,13 @@ def uniformCostSearch(problem):
 	# Cria a fila de prioridade 
 	fila = util.PriorityQueue()  
 	# Insere o nodo e a prioridade definida na fila
-	fila.push(nodo,0)
+	fila.push(nodo,problem)
 	nodosExplorados = []
 	while True:
 	  # Verifica se a fila estar vazia, se estiver encerrar a iteracao
 	  if fila.isEmpty(): 
 	  	return False
-	  estado, custoMeta, caminho = fila.pop() # Desempilha o estado, o custo  elemento a maior prioridade da fila
+	  estado, custoMeta, caminho = fila.pop() # Desempilha o estado, o custo, e o elemento com a maior prioridade da fila
 	  if problem.isGoalState(estado):   # Verifica se estar no estado meta
 		  return caminho   # Retorna o caminho do no inicial ate o estado
 	  if estado not in nodosExplorados:  
@@ -150,14 +150,9 @@ def simulatedAnnealingSearch(problem, heuristic=nullHeuristic):
 #########################################################################################	
 """ Busca Subida de Encosta """
 def hillClimbingSearch(problem):
-<<<<<<< HEAD
-
-
-=======
 	
 	current_node = problem.getStartState()
-		
->>>>>>> a1535a22e8bae30a8591b6af724cef6e99616934
+	
 	util.raiseNotDefined()
 
 #########################################################################################	

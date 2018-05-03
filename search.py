@@ -108,9 +108,32 @@ def nullHeuristic(state, problem=None):
 
 def uniformCostSearch(problem):
 	"""Search the node of least total cost first."""
-
-	util.raiseNotDefined()
-	
+	# Define o nodo como um conjunto contendo o estado inicial, o custo do caminho e a lista de passos percorridos
+	nodo = (problem.getStartState(),0,[])  
+	# Cria a fila de prioridade 
+	fila = util.PriorityQueue()  
+	# Insere o nodo e a prioridade definida na fila
+	fila.push(nodo,0)
+	nodosExplorados = []
+	while True:
+	  # Verifica se a fila estar vazia, se estiver encerrar a iteracao
+	  if fila.isEmpty(): 
+	  	return False
+	  estado, custoMeta, caminho = fila.pop() # Desempilha o estado, o custo  elemento a maior prioridade da fila
+	  if problem.isGoalState(estado):   # Verifica se estar no estado meta
+		  return caminho   # Retorna o caminho do no inicial ate o estado
+	  if estado not in nodosExplorados:  
+		 nodosExplorados.append(estado) # Adiciona o nodo na lista de nodos explorados
+		 sucessores = problem.getSuccessors(estado)
+	  # Percorre os filhos do elemento desempilhado 
+	  for sucessor, direcao, custoNo in sucessores:
+	  	if sucessor not in nodosExplorados:
+		  custoCaminho = custoMeta + custoNo
+		  # Insere o filho do elemento desempilhado com o menor custo acumulado como prioridade para realizar a expansao
+		  fila.push((sucessor,custoCaminho,caminho+[direcao]), custoCaminho)
+		  print "Caminho percorrido:\n", caminho
+		  print "Numero de estados:\n", len(caminho)
+	return caminho
 #########################################################################################
 """ Busca A* """
 
@@ -127,6 +150,7 @@ def simulatedAnnealingSearch(problem, heuristic=nullHeuristic):
 #########################################################################################	
 """ Busca Subida de Encosta """
 def hillClimbingSearch(problem):
+
 
 	util.raiseNotDefined()
 

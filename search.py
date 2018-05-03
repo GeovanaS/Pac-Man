@@ -111,7 +111,7 @@ def uniformCostSearch(problem):
 
 	util.raiseNotDefined()
 	
-##############################################################################################
+#########################################################################################
 """ Busca A* """
 
 def aStarSearch(problem, heuristic=nullHeuristic):
@@ -120,13 +120,13 @@ def aStarSearch(problem, heuristic=nullHeuristic):
 
 #########################################################################################
 """ Busca Tempera Simulada """
-def simulatedAnnealingSearch():
+def simulatedAnnealingSearch(problem, heuristic=nullHeuristic):
 
 	util.raiseNotDefined()
 
 #########################################################################################	
 """ Busca Subida de Encosta """
-def hillClimbingSearch():
+def hillClimbingSearch(problem):
 
 	util.raiseNotDefined()
 

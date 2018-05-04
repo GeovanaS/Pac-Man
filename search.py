@@ -145,27 +145,27 @@ def aStarSearch(problem, heuristic=nullHeuristic):
 	# estado inicial do nodo
 	nodo = problem.getStartState()
 	#incializo a fila com o primeiro nodo 
-    fila.push((nodo, 0), heuristic(nodo, problem))
-    #todos explorados
-    nodosExplorados = []
-    #enquanto a fila não estiver vazia fico no laço
-    while True:
+    	fila.push((nodo, 0), heuristic(nodo, problem))
+    	#todos explorados
+    	nodosExplorados = []
+    	#enquanto a fila não estiver vazia fico no laço
+    	while True:
   		if  fila.isEmpty():
-     		return False
-     	estado, caminho = fila.pop() # Desempilha o estado atual e o caminho
-     	if problem.isGoalState(atual):
-        	return caminho
-        if estado not in nodosExplorados
-        	nodosExplorados.append(estado) # Adiciona o nodo na lista de nodos explorados
-         sucessores = problem.getSuccessors(estado)
-          # Percorre os filhos do elemento desempilhado 
-        for sucessor,direcao in sucessores
-        	if sucessor not in nodosExplorados:
-        		custovizinho = caminho + [direcao]
+     			return False
+     		estado, caminho = fila.pop() # Desempilha o estado atual e o caminho
+     		if problem.isGoalState(atual):
+        		return caminho
+        	if estado not in nodosExplorados
+        		nodosExplorados.append(estado) # Adiciona o nodo na lista de nodos explorados
+         	sucessores = problem.getSuccessors(estado)
+          	# Percorre os filhos do elemento desempilhado 
+        	for sucessor,direcao in sucessores
+        		if sucessor not in nodosExplorados:
+        			custovizinho = caminho + [direcao]
         		custoCaminho = problem.getCostOfActions(custovizinho) + heuristic(sucessor, problem)
         		fila.push((sucessor, custovizinho),custoCaminho)
         		print "Caminho percorrido:\n", caminho
-		  		print "Numero de estados:\n", len(caminho)
+		  	print "Numero de estados:\n", len(caminho)
 	return caminho
 
 #########################################################################################

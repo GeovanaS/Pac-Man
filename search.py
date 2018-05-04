@@ -139,27 +139,26 @@ def uniformCostSearch(problem):
 
 def aStarSearch(problem, heuristic=nullHeuristic):
 	"""Search the node that has the lowest combined cost and heuristic first."""     
-	"""Search the node that has the lowest combined cost and heuristic first."""     
 	# Cria a fila de prioridade 
 	fila = util.PriorityQueue()  
 	# estado inicial do nodo
 	nodo = problem.getStartState()
 	#incializo a fila com o primeiro nodo 
-    	fila.push((nodo, 0), heuristic(nodo, problem))
+    	fila.push((nodo, []), heuristic(nodo, problem))
     	#todos explorados
     	nodosExplorados = []
-    	#enquanto a fila não estiver vazia fico no laço
+    	#enquanto a fila nao estiver vazia fico no laco
     	while True:
   		if  fila.isEmpty():
      			return False
      		estado, caminho = fila.pop() # Desempilha o estado atual e o caminho
-     		if problem.isGoalState(atual):
+     		if problem.isGoalState(estado):
         		return caminho
-        	if estado not in nodosExplorados
+        	if estado not in nodosExplorados:
         		nodosExplorados.append(estado) # Adiciona o nodo na lista de nodos explorados
          	sucessores = problem.getSuccessors(estado)
           	# Percorre os filhos do elemento desempilhado 
-        	for sucessor,direcao in sucessores
+        	for sucessor,direcao,custo in sucessores:
         		if sucessor not in nodosExplorados:
         			custovizinho = caminho + [direcao]
         		custoCaminho = problem.getCostOfActions(custovizinho) + heuristic(sucessor, problem)
@@ -190,15 +189,15 @@ def hillClimbingSearch(problem):
 
 	while not fila.isEmpty():
 
-		#desempilha o nó atual
+		#desempilha o no atual
 		node = fila.pop()
 		estado = node["state"]
 		valor = node["value"]
 		caminho = node["way"]
 
-		if problem.isGoalState(estado): #verifica se é o objetivo
+		if problem.isGoalState(estado): #verifica se eh o objetivo
 		  return caminho  
-		if estado not in nodosExplorados:  #verifica se ainda não foi explorado
+		if estado not in nodosExplorados:  #verifica se ainda nao foi explorado
 		 	nodosExplorados.append(estado)
 
 		neighbor = problem.getSuccessors(estado)
@@ -206,12 +205,12 @@ def hillClimbingSearch(problem):
 		for succ, direcao, value_no in neighbor:
 			if succ not in nodosExplorados:
 
-			# cria nó vizinho
-			neighbors = {}
+			# cria no vizinho
+				neighbors = {}
 		        neighbors["pai"] = node
 		        neighbors["state"] = succ
 		        neighbors["direcao"] = direcao
-		        if value_no > valor: # verifica se o valor do pai é menor que o valor do vizinho
+		        if value_no > valor: # verifica se o valor do pai eh menor que o valor do vizinho
 		        	return caminho
 
 		        neighbors["value"] = value_no + valor

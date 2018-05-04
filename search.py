@@ -161,8 +161,8 @@ def aStarSearch(problem, heuristic=nullHeuristic):
         	for sucessor,direcao,custo in sucessores:
         		if sucessor not in nodosExplorados:
         			custovizinho = caminho + [direcao]
-        		custoCaminho = problem.getCostOfActions(custovizinho) + heuristic(sucessor, problem)
-        		fila.push((sucessor, custovizinho),custoCaminho)
+        			custoCaminho = problem.getCostOfActions(custovizinho) + heuristic(sucessor, problem)
+        			fila.push((sucessor, custovizinho),custoCaminho)
         		print "Caminho percorrido:\n", caminho
 		  	print "Numero de estados:\n", len(caminho)
 	return caminho

@@ -178,9 +178,52 @@ def simulatedAnnealingSearch(problem, heuristic=nullHeuristic):
 """ Busca Subida de Encosta """
 def hillClimbingSearch(problem):
 	
-	current_node = problem.getStartState()
 	
-	util.raiseNotDefined()
+	state = problemStartState()
+	node = {}
+	node["pai"] = None
+	node["state"] = state
+	node["value"] = 0
+	node["way"] = None
+	nodosExplorados = []
+	fila.push(node, node["value"])
+
+	while not fila.isEmpty():
+
+		#desempilha o nó atual
+		node = fila.pop()
+		estado = node["state"]
+		valor = node["value"]
+		caminho = node["way"]
+
+		if problem.isGoalState(estado): #verifica se é o objetivo
+		  return caminho  
+		if estado not in nodosExplorados:  #verifica se ainda não foi explorado
+		 	nodosExplorados.append(estado)
+
+		neighbor = problem.getSuccessors(estado)
+
+		for succ, direcao, value_no in neighbor:
+			if succ not in nodosExplorados:
+
+				# cria nó vizinho
+				neighbors = {}
+		        neighbors["pai"] = node
+		        neighbors["state"] = succ
+		        neighbors["direcao"] = direcao
+		        if value_no > valor: # verifica se o valor do pai é menor que o valor do vizinho
+		        	return caminho
+
+		        neighbors["value"] = value_no + valor
+		        fila.push(neighbors, neighbors["value"])
+
+
+				print "Caminho percorrido:\n", caminho
+				print "Numero de estados:\n", len(caminho)
+
+	return caminho
+	
+	#util.raiseNotDefined()
 
 #########################################################################################	
 

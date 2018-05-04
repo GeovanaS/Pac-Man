@@ -206,8 +206,8 @@ def hillClimbingSearch(problem):
 		for succ, direcao, value_no in neighbor:
 			if succ not in nodosExplorados:
 
-				# cria nó vizinho
-				neighbors = {}
+			# cria nó vizinho
+			neighbors = {}
 		        neighbors["pai"] = node
 		        neighbors["state"] = succ
 		        neighbors["direcao"] = direcao
@@ -216,10 +216,8 @@ def hillClimbingSearch(problem):
 
 		        neighbors["value"] = value_no + valor
 		        fila.push(neighbors, neighbors["value"])
-
-
-				print "Caminho percorrido:\n", caminho
-				print "Numero de estados:\n", len(caminho)
+			print "Caminho percorrido:\n", caminho
+			print "Numero de estados:\n", len(caminho)
 
 	return caminho
 	

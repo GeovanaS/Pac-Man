@@ -14,9 +14,9 @@ Entrada: Estado inicial e estado meta;
 
 Deve retornar: 
 
-a) o número de estados (movimentos) testados
+    a) o número de estados (movimentos) testados
 
-b) o caminho e número de estados para a solução;
+    b) o caminho e número de estados para a solução;
 
 
 Compilação:
@@ -29,11 +29,11 @@ Compilação:
 
     Labirinto Grande: python pacman.py -l bigMaze -z .5 -p SearchAgent -a fn=astar
 
--Usando função heurística:
+    - Usando função heurística:
 
-    Distância Manhattan:  python pacman.py -l tinyMaze -p SearchAgent -a fn=astar,heuristic=manhattanHeuristic
+         Distância Manhattan:  python pacman.py -l tinyMaze -p SearchAgent -a fn=astar,heuristic=manhattanHeuristic
 
-    Distância Euclidiana: python pacman.py -l tinyMaze -p SearchAgent -a fn=astar,heuristic=euclideanHeuristic
+         Distância Euclidiana: python pacman.py -l tinyMaze -p SearchAgent -a fn=astar,heuristic=euclideanHeuristic
 
 
 - Busca de Custo Uniforme: 

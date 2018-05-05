@@ -195,7 +195,7 @@ def simulatedAnnealingSearch(problem, heuristic=nullHeuristic):
 			valorRandom == 0:
 			novoEstado, novaAcao,cam = fila.pop()
 		
-		#e = 
+		#e = valor[proximo] - valor[nodo]
 		if e > 0:
 			nodo = novoEstado
             acao = novaAcao

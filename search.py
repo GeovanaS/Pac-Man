@@ -20,6 +20,8 @@ Pacman agents (in searchAgents.py).
 """
 
 import util
+import math
+import random
 
 class SearchProblem:
 	"""
@@ -170,8 +172,45 @@ def aStarSearch(problem, heuristic=nullHeuristic):
 #########################################################################################
 """ Busca Tempera Simulada """
 def simulatedAnnealingSearch(problem, heuristic=nullHeuristic):
-
-	util.raiseNotDefined()
+	# Cria a fila 
+	fila = util.Queue()  
+	# estado inicial do nodo
+	nodo = (problem.getStartState(),0,[])
+	#tempo
+	t= 1.0
+	#loop infinito porque o algoritmo teorico mostra que deve ser feito um loop de t=1 ate infinto
+	while True:
+		cont=0
+		# T = escalonamento(t)
+		sucessores = problem.getSuccessors(nodo)
+		for proximo,direcao,caminho in sucessores:
+			fila.push((problem,[direcao],caminho))
+			cont = cont+1
+		#escolho um valor randomico de 0 até a quantidade que já abri
+		valorRandom= random.randint(0, cont-1)
+		if valorRandom > 0:
+			for j in range (0, valorRandom + 1):
+                novEstado, acao,cam = fila.pop()
+		else:
+			valorRandom == 0:
+			novoEstado, novaAcao,cam = fila.pop()
+		
+		#e = 
+		if e > 0:
+			nodo = novoEstado
+            acao = novaAcao
+            caminho = cam
+            #steps = steps + action
+        else:
+        	#e^e/t 
+        	if math.exp(-e/t):
+        		nodo = novoEstado
+        		acao = novaAcao
+        		caminho = cam
+       	if problem.isGoalState(state):
+        	print "Caminho percorrido:\n", caminho
+		  	print "Numero de estados:\n", len(caminho)
+		# t=t * alpha
 
 #########################################################################################	
 """ Busca Subida de Encosta """

@@ -171,53 +171,56 @@ def aStarSearch(problem, heuristic=nullHeuristic):
 
 #########################################################################################
 """ Busca Tempera Simulada """
-def simulatedAnnealingSearch(problem, heuristic=nullHeuristic):
-	# Cria a fila 
-	fila = util.Queue()  
+def simulatedAnnealingSearch(problem):
+	caminho = []
+	direcaoNodo = []
 	# estado inicial do nodo
-	nodo = (problem.getStartState(),0,[])
+	nodo = problem.getStartState()
 	#tempo
-	t= 1.0
-	#loop infinito porque o algoritmo teorico mostra que deve ser feito um loop de t=1 ate infinto
+	t = 1.0
+	alfa = 1.0
+    #loop infinito porque o algoritmo teorico mostra que deve ser feito um loop de t=1 ate infinto
 	while True:
-		cont=0
-		# T = escalonamento(t)
-		sucessores = problem.getSuccessors(nodo)
-		for proximo,direcao,caminho in sucessores:
-			fila.push((problem,[direcao],caminho))
-			cont = cont+1
-		#escolho um valor randomico de 0 até a quantidade que já abri
-		valorRandom= random.randint(0, cont-1)
-		if valorRandom > 0:
-			for j in range (0, valorRandom + 1):
-                novEstado, acao,cam = fila.pop()
-		else:
-			valorRandom == 0:
-			novoEstado, novaAcao,cam = fila.pop()
-		
-		#e = valor[proximo] - valor[nodo]
-		if e > 0:
-			nodo = novoEstado
-            acao = novaAcao
-            caminho = cam
-            #steps = steps + action
-        else:
-        	#e^e/t 
-        	if math.exp(-e/t):
-        		nodo = novoEstado
-        		acao = novaAcao
-        		caminho = cam
-       	if problem.isGoalState(state):
-        	print "Caminho percorrido:\n", caminho
-		  	print "Numero de estados:\n", len(caminho)
-		# t=t * alpha
+         cont = 0
+         # Cria a fila 
+    	 fila = util.Queue()
+    	 # T = escalonamento(t)
+    	 sucessores = problem.getSuccessors(nodo)
+    	 for proximo, direcao, cam in sucessores:
+    		fila.push((proximo,[direcao]))
+    		cont = cont + 1
+    	 #escolho um valor randomico de 0 ate a quantidade que ja abri
+    	 valorRandom = random.randint(0,cont-1)
+    	 if valorRandom > 0:
+    		for j in range(0,valorRandom+1):
+    			novoEstado,novaAcao = fila.pop()
+    	 else:
+    	     novoEstado,novaAcao = fila.pop()
+    	 e = problem.getCostOfActions(novaAcao) - problem.getCostOfActions(direcaoNodo) 
+    	 #e = valor[proximo] - valor[nodo]
+    	 if e < 0:
+    	      nodo = novoEstado
+    	      direcaoNodo = novaAcao
+    	      caminho = caminho + direcaoNodo
+    	 else:
+    	 	#e^e/t 
+    	    if math.exp(-e/t):
+    	    	nodo = novoEstado
+    	    	direcaoNodo = novaAcao
+    	    	caminho = caminho + direcaoNodo
+    	 if problem.isGoalState(nodo):
+    		 return caminho
 
+    	 t = t * alfa
+         #print "Caminho percorrido:\n",caminho
+         #print "Numero de estados:\n",len(caminho)
+
+ 	return caminho 	
 #########################################################################################	
 """ Busca Subida de Encosta """
 def hillClimbingSearch(problem):
 	
-	
-	state = problemStartState()
+	state = problem.getStartState()
 	node = {}
 	node["pai"] = None
 	node["state"] = state

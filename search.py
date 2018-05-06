@@ -178,7 +178,7 @@ def simulatedAnnealingSearch(problem):
 	nodo = problem.getStartState()
 	#tempo
 	t = 1.0
-	alfa = 1.0
+	alfa = 1.4
     #loop infinito porque o algoritmo teorico mostra que deve ser feito um loop de t=1 ate infinto
 	while True:
          cont = 0

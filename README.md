@@ -47,6 +47,10 @@ Compilação:
 - Têmpera Simulada:
     
     python pacman.py -l tinyMaze -p SearchAgent -a fn=sa
+    
+    python pacman.py -l mediumMaze -p SearchAgent -a fn=sa
+    
+    python pacman.py -l bigMaze -p SearchAgent -a fn=sa
 
 - Subida de Encosta:
     

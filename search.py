@@ -220,39 +220,38 @@ def simulatedAnnealingSearch(problem):
 """ Busca Subida de Encosta """
 def hillClimbingSearch(problem, heuristic = nullHeuristic):
 
-    custo = 1 # Para a busca funcionar, o pai precisa começar sendo maior.
+    custo = 1 # Para a busca funcionar, o pai precisa comecar sendo maior.
     custoFilho = 0 
-    fila = util.PriorityQueue()
     caminho =[]
+    estado = problem.getStartState()
+    estado = ((estado, []), heuristic(estado, problem))
 
-    estado = ((estado = problem.getStartState(), []), heuristic(estado, problem))
+    while (custo > custoFilho):
 
-    while custo > custoFilho:
-    	
-        fila = util.PriorityQueue()
-	custo = heuristic(estado, problem)
+    	queue = util.PriorityQueue()
+    	custo = heuristic(estado,problem)
 	
-        if fila.isEmpty():
-        	return False
+        #if queue.isEmpty():
+        #	return False
         
-        if problem.isGoalState(estado):
-           print "Caminho percorrido: ", caminho
-           print "Numero de estados: ", len(caminho)           
-           return caminho
+       	if problem.isGoalState(estado):
+          	print "Caminho percorrido: ", caminho
+       		print "Numero de estados: ", len(caminho)           
+       		return caminho
 
         sucessores = problem.getSuccessors(estado[0][0])
 
         for child in sucessores:
             custoCaminho = problem.getCostOfActions([child[1]]) + heuristic(child[0], problem)
             queue.push((child[0], child[1]), custoCaminho)
-
+            
         estadoProx = queue.pop()
         #calcula o custo do proximo nodo
         custoFilho = problem.getCostOfActions([estadoProx[1]]) + heuristic(estadoProx[0], problem) - 1
     
     #soma o caminho ja percorrido com o proximo
-    caminho = caminho + [estadoProx[1]] 
-    estado = ((estadoProx[0], estadoProx[1]), custoFilho)
+    	caminho = caminho + [estadoProx[1]] 
+   	estado = ((estadoProx[0], estadoProx[1]), custoFilho)
 
     print "Caminho percorrido: ", caminho
     print "Numero de estados: ", len(caminho)  

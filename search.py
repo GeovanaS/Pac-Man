@@ -178,7 +178,7 @@ def simulatedAnnealingSearch(problem):
 	nodo = problem.getStartState()
 	#tempo
 	t = 1.0
-	alfa = 1.4
+	alfa = 1.5
     #loop infinito porque o algoritmo teorico mostra que deve ser feito um loop de t=1 ate infinto
 	while True:
          cont = 0
@@ -212,30 +212,32 @@ def simulatedAnnealingSearch(problem):
     		 return caminho
 
     	 t = t * alfa
-         #print "Caminho percorrido:\n",caminho
-         #print "Numero de estados:\n",len(caminho)
+         print "Caminho percorrido:\n",caminho
+         print "Numero de estados:\n",len(caminho)
 
  	return caminho 	
 #########################################################################################	
 """ Busca Subida de Encosta """
 def hillClimbingSearch(problem):
-	
 	state = problem.getStartState()
 	node = {}
 	node["pai"] = None
 	node["state"] = state
 	node["value"] = 0
-	node["way"] = None
+	#node["way"] = None
 	nodosExplorados = []
+	caminho = []
+	fila= util.PriorityQueue()
 	fila.push(node, node["value"])
 
-	while not fila.isEmpty():
-
+	while True:
+		if fila.isEmpty():
+			return False
 		#desempilha o no atual
 		node = fila.pop()
 		estado = node["state"]
 		valor = node["value"]
-		caminho = node["way"]
+		#caminho = node["way"]
 
 		if problem.isGoalState(estado): #verifica se eh o objetivo
 		  return caminho  
@@ -262,7 +264,6 @@ def hillClimbingSearch(problem):
 
 	return caminho
 	
-	#util.raiseNotDefined()
 
 #########################################################################################	
 

@@ -218,51 +218,46 @@ def simulatedAnnealingSearch(problem):
  	return caminho 	
 #########################################################################################	
 """ Busca Subida de Encosta """
-def hillClimbingSearch(problem):
-	state = problem.getStartState()
-	node = {}
-	node["pai"] = None
-	node["state"] = state
-	node["value"] = 0
-	#node["way"] = None
-	nodosExplorados = []
-	caminho = []
-	fila= util.PriorityQueue()
-	fila.push(node, node["value"])
+def hillClimbingSearch(problem, heuristic = nullHeuristic):
 
-	while True:
-		if fila.isEmpty():
-			return False
-		#desempilha o no atual
-		node = fila.pop()
-		estado = node["state"]
-		valor = node["value"]
-		#caminho = node["way"]
+    custo = 1 # Para a busca funcionar, o pai precisa começar sendo maior.
+    custoFilho = 0 
+    fila = util.PriorityQueue()
+    caminho =[]
 
-		if problem.isGoalState(estado): #verifica se eh o objetivo
-		  return caminho  
-		if estado not in nodosExplorados:  #verifica se ainda nao foi explorado
-		 	nodosExplorados.append(estado)
+    estado = ((estado = problem.getStartState(), []), heuristic(estado, problem))
 
-		neighbor = problem.getSuccessors(estado)
+    while custo > custoFilho:
+    	
+        fila = util.PriorityQueue()
+	custo = heuristic(estado, problem)
+	
+        if fila.isEmpty():
+        	return False
+        
+        if problem.isGoalState(estado):
+           print "Caminho percorrido: ", caminho
+           print "Numero de estados: ", len(caminho)           
+           return caminho
 
-		for succ, direcao, value_no in neighbor:
-			if succ not in nodosExplorados:
+        sucessores = problem.getSuccessors(estado[0][0])
 
-			# cria no vizinho
-				neighbors = {}
-		        neighbors["pai"] = node
-		        neighbors["state"] = succ
-		        neighbors["direcao"] = direcao
-		        if value_no > valor: # verifica se o valor do pai eh menor que o valor do vizinho
-		        	return caminho
+        for child in sucessores:
+            custoCaminho = problem.getCostOfActions([child[1]]) + heuristic(child[0], problem)
+            queue.push((child[0], child[1]), custoCaminho)
 
-		        neighbors["value"] = value_no + valor
-		        fila.push(neighbors, neighbors["value"])
-			print "Caminho percorrido:\n", caminho
-			print "Numero de estados:\n", len(caminho)
+        estadoProx = queue.pop()
+        #calcula o custo do proximo nodo
+        custoFilho = problem.getCostOfActions([estadoProx[1]]) + heuristic(estadoProx[0], problem) - 1
+    
+    #soma o caminho ja percorrido com o proximo
+    caminho = caminho + [estadoProx[1]] 
+    estado = ((estadoProx[0], estadoProx[1]), custoFilho)
 
-	return caminho
+    print "Caminho percorrido: ", caminho
+    print "Numero de estados: ", len(caminho)  
+
+    return caminho
 	
 
 #########################################################################################	

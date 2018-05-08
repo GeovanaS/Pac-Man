@@ -19,40 +19,56 @@ Deve retornar:
     b) o caminho e número de estados para a solução;
 
 
-Compilação:
+Compilação nos labirintos criados:
 
 - A*:
 
-    Labirinto Pequeno: python pacman.py -l tinyMaze -p SearchAgent -a fn=astar
+        Labirinto Pequeno: 
+        
+            python pacman.py -l small -p SearchAgent -a fn=astar
 
-    Labirinto Médio: python pacman.py -l mediumMaze -p SearchAgent -a fn=astar
+        Labirinto Médio:
+        
+            python pacman.py -l medium -p SearchAgent -a fn=astar
 
-    Labirinto Grande: python pacman.py -l bigMaze -z .5 -p SearchAgent -a fn=astar
+        Labirinto Grande: 
+        
+            python pacman.py -l big  -z .5 -p SearchAgent -a fn=astar
 
-    - Usando função heurística:
+     - Usando função heurística:
 
-         Distância Manhattan:  python pacman.py -l tinyMaze -p SearchAgent -a fn=astar,heuristic=manhattanHeuristic
+            Distância Manhattan:  python pacman.py -l small -p SearchAgent -a fn=astar,heuristic=manhattanHeuristic
 
-         Distância Euclidiana: python pacman.py -l tinyMaze -p SearchAgent -a fn=astar,heuristic=euclideanHeuristic
+            Distância Euclidiana: python pacman.py -l small -p SearchAgent -a fn=astar,heuristic=euclideanHeuristic
 
 
 - Busca de Custo Uniforme: 
 
-    Labirinto Pequeno: python pacman.py -l tinyMaze -p SearchAgent -a fn=ucs
+        Labirinto Pequeno: 
+        
+            python pacman.py -l small -p SearchAgent -a fn=ucs
 
-    Labirinto Médio: python pacman.py -l mediumMaze -p SearchAgent -a fn=ucs
+        Labirinto Médio:
+        
+            python pacman.py -l medium -p SearchAgent -a fn=ucs
 
-    Labirinto Grande: python pacman.py -l bigMaze -z .5 -p SearchAgent -a fn=ucs
+        Labirinto Grande: 
+        
+            python pacman.py -l big -z .5 -p SearchAgent -a fn=ucs
 
 - Têmpera Simulada:
     
-    python pacman.py -l tinyMaze -p SearchAgent -a fn=sa
+         python pacman.py -l small -p SearchAgent -a fn=sa
     
-    python pacman.py -l mediumMaze -p SearchAgent -a fn=sa
+         python pacman.py -l medium -p SearchAgent -a fn=sa
     
-    python pacman.py -l bigMaze -p SearchAgent -a fn=sa
+         python pacman.py -l big -z .5 -p SearchAgent -a fn=sa
 
 - Subida de Encosta:
     
-    python pacman.py -l tinyMaze -p SearchAgent -a fn=hc
-
+         python pacman.py -l small -p SearchAgent -a fn=hc
+    
+         python pacman.py -l medium -p SearchAgent -a fn=hc
+    
+         python pacman.py -l big -z .5 -p SearchAgent -a fn=hc
+    

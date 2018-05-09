@@ -133,8 +133,8 @@ def uniformCostSearch(problem):
 		  custoCaminho = custoMeta + custoNo
 		  # Insere o filho do elemento desempilhado com o menor custo acumulado como prioridade para realizar a expansao
 		  fila.push((sucessor,custoCaminho,caminho+[direcao]), custoCaminho)
-		  print "Caminho percorrido:\n", caminho
-		  print "Numero de estados:\n", len(caminho)
+		  #print "Caminho percorrido:\n", caminho
+		  #print "Numero de estados:\n", len(caminho)
 	return caminho
 #########################################################################################
 """ Busca A* """
@@ -165,8 +165,8 @@ def aStarSearch(problem, heuristic=nullHeuristic):
         			custovizinho = caminho + [direcao]
         			custoCaminho = problem.getCostOfActions(custovizinho) + heuristic(sucessor, problem)
         			fila.push((sucessor, custovizinho),custoCaminho)
-        		print "Caminho percorrido:\n", caminho
-		  	print "Numero de estados:\n", len(caminho)
+        		#print "Caminho percorrido:\n", caminho
+		  	#print "Numero de estados:\n", len(caminho)
 	return caminho
 
 #########################################################################################
@@ -198,22 +198,22 @@ def simulatedAnnealingSearch(problem):
     	     novoEstado,novaAcao = fila.pop()
     	 e = problem.getCostOfActions(novaAcao) - problem.getCostOfActions(direcaoNodo) 
     	 #e = valor[proximo] - valor[nodo]
-    	 if e < 0:
+    	 if e < 0:   #verifica se houve uma reducao de energia,ou seja, a nova solucao eh melhor que a anterior
     	      nodo = novoEstado
     	      direcaoNodo = novaAcao
     	      caminho = caminho + direcaoNodo
     	 else:
     	 	#e^e/t 
-    	    if math.exp(-e/t):
+    	    if math.exp(-e/t): #verifica se a temperatura eh alta atraves da funcao de probabilidade da solucao ser aceita
     	    	nodo = novoEstado
     	    	direcaoNodo = novaAcao
     	    	caminho = caminho + direcaoNodo
     	 if problem.isGoalState(nodo):
     		 return caminho
-
+         #atualiza a temperatura		 
     	 t = t * alfa
-         print "Caminho percorrido:\n",caminho
-         print "Numero de estados:\n",len(caminho)
+         #print "Caminho percorrido:\n",caminho
+         #print "Numero de estados:\n",len(caminho)
 
  	return caminho 	
 #########################################################################################	
@@ -231,12 +231,9 @@ def hillClimbingSearch(problem, heuristic = nullHeuristic):
     	queue = util.PriorityQueue()
     	custo = heuristic(estado,problem)
 	
-        #if queue.isEmpty():
-        #	return False
-        
        	if problem.isGoalState(estado):
-          	print "Caminho percorrido: ", caminho
-       		print "Numero de estados: ", len(caminho)           
+          	#print "Caminho percorrido: ", caminho
+       		#print "Numero de estados: ", len(caminho)           
        		return caminho
 
         sucessores = problem.getSuccessors(estado[0][0])
@@ -253,8 +250,8 @@ def hillClimbingSearch(problem, heuristic = nullHeuristic):
     	caminho = caminho + [estadoProx[1]] 
    	estado = ((estadoProx[0], estadoProx[1]), custoFilho)
 
-    print "Caminho percorrido: ", caminho
-    print "Numero de estados: ", len(caminho)  
+    #print "Caminho percorrido: ", caminho
+    #print "Numero de estados: ", len(caminho)  
 
     return caminho
 	
